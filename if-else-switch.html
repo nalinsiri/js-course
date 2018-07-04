@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>if-else and switch case</title>
+    </head>
+    <body>
+        <h1>Hello World</h1>
+        <input type="text" name="fname">
+        <button type="button" onclick="check()">Check</button>
+        <script>
+            var name
+            var age = 15
+
+            // if(age == 25)
+            // {
+            //     document.getElementsByTagName('h1')[0].innerHTML = 'I\'m 25 years old'
+            // }
+            // else if(age > 25)
+            // {
+            //     document.getElementsByTagName('h1')[0].innerHTML = 'I\'m older than 25 years old'
+            // }
+            // else
+            // {
+            //     document.getElementsByTagName('h1')[0].innerHTML = 'I\'m younger than 25 years old'
+            // }
+            function check()
+            {
+                name = document.getElementsByName('fname')[0].value
+
+                function output(text)
+                {
+                    document.getElementsByTagName('h1')[0].innerHTML = 'Hello ' + text
+                }
+
+                switch (name)
+                {
+                    case 'Dennis': output(name)
+                        break;
+                    // if(name == 'Kittisak')
+                    case 'Kittisak': output(name)
+                        break;
+
+                    case 'Tom': output(name)
+                        break;
+                    // else {...}
+                    default:
+                        name = 'I don\'t know you'
+                        output(name)
+                }
+            }
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>for and (for in) loop</title>
+        <style media="screen">
+            table{
+                border-collapse: collapse;
+            }
+            td, th{
+                padding: 5px;
+                border: 1px solid #2094B2;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <table id="info">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+
+            //variavle
+            var month1 = 'Jan';
+
+            //Arrays
+            var months = ['Jan', 'Fab', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            //Object
+            var person = {
+                'fname': 'Max',
+                'lname': 'Well',
+                'age': '20'
+            };
+
+            //Arrays Object
+            var persons = [
+                {"fname":"John", "lname":"Doe"},
+                {"fname":"Anna", "lname":"Smith"},
+                {"fname":"Peter", "lname":"Jones"}
+            ];
+
+            //check if the variable is an array
+            console.log(person instanceof Array);
+
+            //for loop
+            // for (var i = 0; i < months.length; i++)
+            // {
+            //     console.log(months[i]);
+            // }
+
+            //for in loop
+            // for (var index in persons)
+            // {
+            //     console.log(persons[index]['fname'] + ' ' + persons[index]['lname']);
+            // }
+
+            for (var index in persons)
+            {
+                //create row
+                var tableRow = document.createElement('tr');
+
+                //create column 1
+                var tableData1 = document.createElement('td');
+                //create first name
+                var fname = document.createTextNode(persons[index].fname);
+                //attach first name to td element
+                tableData1.appendChild(fname);
+
+                //create column 2
+                var tableData2 = document.createElement('td');
+                //create last name
+                var lname = document.createTextNode(persons[index].lname);
+                //append first name to td element
+                tableData2.appendChild(lname);
+
+                //attach 2 column to tr element
+                tableRow.appendChild(tableData1);
+                tableRow.appendChild(tableData2);
+
+                //attach tr element to table with id=info
+                document.getElementById('info').appendChild(tableRow);
+            }
+
+        </script>
+    </body>
+</html>

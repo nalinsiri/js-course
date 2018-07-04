@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Function</title>
+    </head>
+    <body>
+        <h1>Calculator</h1>
+        <label><strong>Add</strong></label><br>
+        <input type="text" name="a">
+        <span>+</span>
+        <input type="text" name="b">
+        <input type="submit" value="=" onclick="add()">
+        <input type="text" name="result" disabled><br>
+
+        <label><strong>Sub</strong></label><br>
+        <input type="text" name="a">
+        <span>-</span>
+        <input type="text" name="b">
+        <input type="submit" value="=" onclick="sub()">
+        <input type="text" name="result" disabled>
+        <img src="" alt="">
+        <script>
+            function add()
+            {
+                var a = document.getElementsByName('a')[0].value;
+                var b = document.getElementsByName('b')[0].value;
+                var result;
+
+                if(a !== '' && b !== '')
+                {
+                    result = Number(a) + Number(b);
+
+                    document.getElementsByName('result')[0].value = result;
+                }
+            }
+
+            function sub()
+            {
+                var a = document.getElementsByName('a')[1].value;
+                var b = document.getElementsByName('b')[1].value;
+                var result;
+
+                if(a !== '' && b !== '')
+                {
+                    result = Number(a) - Number(b);
+
+                    document.getElementsByName('result')[1].value = result;
+                }
+            }
+
+            function rectangle(a, b)
+            {
+                var result = a * b;
+
+                document.write('result : ' + result);
+            }
+
+            // rectangle(3, 4);
+
+            document.getElementsByTagName('img')[0].src = 'images/JavaScript.png';
+            document.getElementsByTagName('img')[0].alt = 'JavaScript Image';
+        </script>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Arrays</title>
+    </head>
+    <body>
+        <h2>Select month</h2>
+        <select id="months" onchange="getSelected()">
+            <option value="">please select</option>
+        </select>
+        <p id="selected"></p>
+
+        <script type="text/javascript">
+
+            var months = ['Jan', 'Fab', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+            var cars = new Array('Toyota', 'VW', 'General Motor');
+
+            // object
+            var employees = {
+                "persons":[
+                    {"fname":"John", "lname":"Doe"},
+                    {"fname":"Anna", "lname":"Smith"},
+                    {"fname":"Peter", "lname":"Jones"}
+                ]
+            }
+
+            for (var i = 0; i < months.length; i++)
+            {
+                var element = months[i];
+
+                var option = document.createElement('option');
+                var text = document.createTextNode(element);
+                option.appendChild(text);
+                option.setAttribute('value', i);
+
+                document.getElementById('months').appendChild(option);
+            }
+
+            for (var index in employees.persons) {
+                console.log(employees.persons[index]['fname']);
+            }
+
+            function getSelected()
+            {
+                var result = document.getElementById('months').value;
+
+                document.getElementById('selected').innerHTML = Number(result) + 1;
+            }
+
+        </script>
+    </body>
+</html>

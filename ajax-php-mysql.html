@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX with PHP and MySQL</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+        <link rel="stylesheet" href="css/ajax-php-mysql.css">
+    </head>
+    <body onload="employeesListing()">
+        <div id="employee-info">
+            <h1>Employee information <span>+</span></h1>
+            <form action="#" method="post">
+                <label class="form-control" for="employee">Select employee</label>
+                <select class="form-control" id="employee" name="employee" onchange="employeeShow(this.value)">
+                    <option value="">-- Select Employee --</option>
+                </select>
+                <label class="form-control" for="fname">First name</label>
+                <input type="text" class="form-control" name="fname" id="fname">
+                <label class="form-control" for="lname">Last name</label>
+                <input type="text" class="form-control" name="lname" id="lname">
+                <label class="form-control" for="phone">Phone</label>
+                <input type="text" class="form-control" name="phone" id="phone">
+                <label class="form-control" for="email">Email</label>
+                <input type="text" class="form-control" name="email" id="email">
+                <button class="form-control" type="button" name="submit" onclick="employeeUpdate()">Update</button>
+            </form>
+        </div>
+        <script src="js/ajax-php-mysql.js" charset="utf-8"></script>
+    </body>
+</html>

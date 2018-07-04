@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>DOM Document</title>
+        <style media="screen">
+            img{
+                width: 640px;
+                height: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <img src="images/js1.png" alt="">
+
+        </div>
+
+        <script type="text/javascript">
+            document.getElementsByTagName('img')[0].setAttribute('src', 'images/js2.png');
+            document.images[0].src = 'images/js1.png';
+
+            var img = document.createElement("img");
+            img.setAttribute('src', 'images/js2.png');
+            document.getElementsByClassName('content')[0].appendChild(img);
+        </script>
+    </body>
+</html>

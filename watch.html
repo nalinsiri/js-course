@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Watch with datetime</title>
+    </head>
+    <body onload="showTime()">
+        <div id="watch">
+            <!-- place to show time -->
+        </div>
+        <div id="graph">
+            <span id="sec">
+                <img id="fsec" src="images/number/0.jpg" alt="first number">
+                <img id="ssec" src="images/number/1.jpg" alt="second number">
+            </span>
+        </div>
+        <script type="text/javascript">
+            function correctTime(time)
+            {
+                if(time < 10)
+                {
+                    time = '0' + time;
+                }
+
+                return time;
+            }
+
+            function showTime()
+            {
+                var now = new Date();
+                var h = now.getHours();
+                var m = now.getMinutes();
+                var s = now.getSeconds();
+
+                if(s < 10)
+                {
+                    document.getElementById('fsec').setAttribute('src', 'images/number/0.jpg');
+                    document.getElementById('ssec').setAttribute('src', 'images/number/' + s + '.jpg');
+                }
+                else if (s > 9 && s < 20)
+                {
+                    var sec = s;
+                    sec -= 10;
+                    document.getElementById('fsec').setAttribute('src', 'images/number/1.jpg');
+                    document.getElementById('ssec').setAttribute('src', 'images/number/' + sec + '.jpg');
+                }
+                else if (s > 19 && s < 30)
+                {
+                    var sec = s;
+                    sec -= 20;
+                    document.getElementById('fsec').setAttribute('src', 'images/number/2.jpg');
+                    document.getElementById('ssec').setAttribute('src', 'images/number/' + sec + '.jpg');
+                }
+                else if (s > 29 && s < 40)
+                {
+                    var sec = s;
+                    sec -= 30;
+                    document.getElementById('fsec').setAttribute('src', 'images/number/3.jpg');
+                    document.getElementById('ssec').setAttribute('src', 'images/number/' + sec + '.jpg');
+                }
+                else if (s > 39 && s < 50)
+                {
+                    var sec = s;
+                    sec -= 40;
+                    document.getElementById('fsec').setAttribute('src', 'images/number/4.jpg');
+                    document.getElementById('ssec').setAttribute('src', 'images/number/' + sec + '.jpg');
+                }
+                else if (s > 49 && s < 60)
+                {
+                    var sec = s;
+                    sec -= 50;
+                    document.getElementById('fsec').setAttribute('src', 'images/number/5.jpg');
+                    document.getElementById('ssec').setAttribute('src', 'images/number/' + sec + '.jpg');
+                }
+
+                // correct the time format
+                h = correctTime(h);
+                m = correctTime(m);
+                s = correctTime(s);
+
+                document.getElementById('watch').innerHTML = h + ':' + m + ':' + s;
+
+                setTimeout(showTime, 500);
+            }
+        </script>
+    </body>
+</html>

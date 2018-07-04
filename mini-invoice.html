@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Mini Workshop : Invoice</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <style media="screen">
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            body{
+                font-family: 'Open Sans', sans-serif;
+            }
+            #total{
+                width: 88%;
+                padding-right: 12%;
+                text-align: right;
+            }
+            .content{
+                width: 890px;
+                padding: 15px;
+                margin: 0 auto;
+            }
+            table{
+                width: 100%;
+                margin-bottom: 10px;
+                border-collapse: collapse;
+            }
+            th, td{
+                border: 1px solid #2094B2;
+            }
+            input{
+                border: none;
+                height: 30px;
+                width: 90%;
+                font-size: 18px;
+                padding: 0 5%;
+            }
+            button{
+                padding: 5px;
+                background-color: #eee;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <h1>Invoice</h1>
+            <table id="invoice">
+                <tr>
+                    <th>Item</th>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Price/Item</th>
+                    <th>Sum Price</th>
+                </tr>
+            </table>
+            <p id="total">
+                <strong>Total : <span id="result">0</span></strong>
+            </p>
+            <button type="button" name="add" onclick="addItem(itemNames,table1)">Add Item</button>
+        </div>
+
+        <script type="text/javascript">
+
+            var itemNames = ['item[]', 'description[]', 'quantity[]', 'item_price[]', 'sum_price[]'];
+
+            var table1 = 'invoice';
+
+            //this function will create one more item row with its input columns
+            function addItem(names, tableId)
+            {
+                var itemRow = document.createElement('tr');
+
+                for (var i = 0; i < names.length; i++)
+                {
+                    var itemInput = document.createElement('input');
+                    itemInput.setAttribute('type', 'text');
+                    itemInput.setAttribute('name', names[i]);
+
+                    if(names[i] == 'quantity[]' || names[i] == 'item_price[]')
+                    {
+                        itemInput.setAttribute('onkeyup', 'calculate()');
+                    }
+
+                    if(i == (names.length - 1))
+                    {
+                        itemInput.setAttribute('disabled', true);
+                    }
+
+                    var itemColumn = document.createElement('td');
+                    itemColumn.appendChild(itemInput);
+                    itemRow.appendChild(itemColumn);
+                }
+
+                document.getElementById(tableId).appendChild(itemRow);
+            }
+
+            // this will calculate the sum price and total
+            function calculate()
+            {
+                var quantities = document.getElementsByName('quantity[]');
+                var itemPrices = document.getElementsByName('item_price[]');
+                var result;
+                var total = 0;
+
+                for (var i = 0; i < quantities.length; i++)
+                {
+                    result = quantities[i].value * itemPrices[i].value;
+                    document.getElementsByName('sum_price[]')[i].setAttribute('value', result);
+
+                    total += result;
+                }
+
+                document.getElementById('result').innerHTML = total;
+            }
+        </script>
+    </body>
+</html>

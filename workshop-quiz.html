@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Web-Tutor quiz</title>
+        <style media="screen">
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            body{
+                font-family: 'Montserrat', sans-serif;
+            }
+            div.content{
+                width: 800px;
+                margin: 10px auto;
+            }
+            div.question{
+                padding: 10px;
+                background-color: #f1f1f1;
+            }
+            p{
+                padding: 5px;
+            }
+            input{
+                margin-right: 5px;
+            }
+            button{
+                margin: 10px;
+                padding: 5px;
+            }
+            .invisible{
+                visibility: hidden;
+            }
+            .visible{
+                visibility: visible;
+            }
+        </style>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    </head>
+    <body onload="showQuestion()">
+        <div class="content">
+            <section class="quiz">
+                <form name="quiz">
+                    <div class="question">
+                        <!-- question area -->
+                    </div>
+                    <button type="button" name="button" onclick="showQuestion()">Next Question >></button>
+                    <button class="invisible" type="button" name="check" onclick="checkAnswers()">Check Answers</button>
+                </form>
+            </section>
+            <h5>Result : <span id="result"></span> </h5>
+            <h3>Point : <span id="point"></span> </h3>
+        </div>
+
+        <script src="js/quizListing.js" charset="utf-8"></script>
+        <script type="text/javascript">
+
+            var index = 0;
+            var previousLength = 0;
+            var selected = [];
+            var point = 0;
+
+            function showQuestion()
+            {
+                // init questionArea for div=content
+                var questionArea = document.getElementsByClassName('question')[0];
+
+                // create question title
+                var questionTitle = document.createElement('h2');
+                var text = document.createTextNode(quiz.questions[index].title);
+
+                if(index > 0)
+                {
+                    var h2 = document.getElementsByTagName('h2')[0];
+                    h2.replaceChild(text, h2.childNodes[0]);
+                    questionArea.replaceChild(h2, questionArea.childNodes[0]);
+                }
+                else
+                {
+                    questionTitle.appendChild(text);
+                    questionArea.appendChild(questionTitle);
+                }
+
+                for (var j = 0; j < quiz.questions[index].choices.length; j++)
+                {
+                    // create label
+                    var label = document.createElement('p');
+
+                    // create radio button with it's attributes
+                    var choice = document.createElement('input');
+                    choice.setAttribute('type', 'radio');
+                    choice.setAttribute('name', 'q');
+                    choice.setAttribute('value', quiz.questions[index].choices[j])
+                    choice.setAttribute('onchange', 'selectAnswer(this.value)');
+
+                    // create choice text and tag br
+                    var choiceText = document.createTextNode(quiz.questions[index].choices[j]);
+                    var lineBreak = document.createElement('br');
+
+
+
+                    if(index > 0)
+                    {
+                        var label = document.getElementsByTagName('p')[j];
+                        label.replaceChild(choice, label.childNodes[0]);
+                        label.replaceChild(choiceText, label.childNodes[1]);
+                        label.replaceChild(lineBreak, label.childNodes[2]);
+
+                        questionArea.replaceChild(label, questionArea.childNodes[j + 1]);
+                    }
+                    else
+                    {
+                        // append radio button and text to label
+                        label.appendChild(choice);
+                        label.appendChild(choiceText);
+                        label.appendChild(lineBreak);
+
+                        // append label to div=question
+                        questionArea.appendChild(label);
+                    }
+                }
+
+                index++;
+
+                document.getElementsByName('button')[0].setAttribute('disabled', true);
+
+                if(index == quiz.questions.length)
+                {
+                    document.getElementsByName('check')[0].setAttribute('class', 'visible');
+                }
+            }
+
+            function selectAnswer(val)
+            {
+                if(val !== '')
+                {
+                    selected[index-1] = val;
+                }
+                if(index !== quiz.questions.length)
+                {
+                    document.getElementsByName('button')[0].removeAttribute("disabled");
+                }
+            }
+
+            function checkAnswers()
+            {
+                for (var i = 0; i < quiz.questions.length; i++)
+                {
+                    if (selected[i] === quiz.questions[i].correct)
+                    {
+                        point++;
+                        var message = document.createTextNode('"' + selected[i] + '"' + ' is correct answer, ');
+                        document.getElementById('result').appendChild(message);
+                    }
+                    else
+                    {
+                        var message = document.createTextNode('"' + selected[i] + '"' + ' is not correct answer, ');
+                        document.getElementById('result').appendChild(message);
+                    }
+                }
+
+                // output the user's points
+                var pointText = document.createTextNode('You got ' + point + ' point(s) from ' + index);
+                document.getElementById('point').appendChild(pointText);
+
+                // disable the "check answer" button
+                document.getElementsByName('check')[0].setAttribute('disabled', true);
+            }
+        </script>
+    </body>
+</html>
