@@ -11,7 +11,7 @@ if ($conn->connect_error)
 }
 
 // query update
-$sql = "UPDATE employees SET fname = '" . $_POST['fname'] . "', lname = '" . $_POST['lname'] . "', " .
+$sql = "UPDATE contacts SET fname = '" . $_POST['fname'] . "', lname = '" . $_POST['lname'] . "', " .
         "phone = '" . $_POST['phone'] . "', email = '" . $_POST['email'] . "'" . " WHERE id = " . $_POST['id'];
 
 if ($conn->query($sql) === TRUE)

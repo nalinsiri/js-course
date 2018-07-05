@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 
 $contact_id = $_GET['contact'];
 
-if(!empty($employee_id))
+if(!empty($contact_id))
 {
     // query select
     $sql = 'SELECT * FROM contacts WHERE id = ' . $contact_id;

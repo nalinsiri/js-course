@@ -10,12 +10,25 @@ if ($conn->connect_error) {
 }
 
 // query insert
-$sql = 'INSERT INTO employees (firstname, lastname, phone, email)
+$sql = 'INSERT INTO contacts (fname, lname, phone, email)
         VALUES ' . '(\'' . $_POST['fname'] . '\', \'' . $_POST['lname'] .
-        '\', \'' . $_POST['phone'] . '\', \'' . $_POST['email'] . '\', )';
+        '\', \'' . $_POST['phone'] . '\', \'' . $_POST['email'] . '\' )';
 
-        echo $sql;
-// $result = $conn->query($sql);
+if ($conn->query($sql) === TRUE)
+{
+    $last_id = mysqli_insert_id($conn);
+    $message = [];
+    $message['message'] = "Record stored successfully";
+    $message['id'] = $last_id;
+
+    // output as json
+    header("Content-type:application/json");
+    echo json_encode($message);
+}
+else
+{
+    echo "Error storing record: " . $conn->error;
+}
 
 $conn->close();
 ?>
