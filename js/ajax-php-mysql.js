@@ -1,11 +1,11 @@
 function ajaxBrowserHacks()
 {
-    if (window.XMLHttpRequest) 
+    if (window.XMLHttpRequest)
     {
         // code for IE7+, Firefox, Chrome, Opera, Safari
         return new XMLHttpRequest();
-    } 
-    else 
+    }
+    else
     {
         // code for IE6, IE5
         return new ActiveXObject("Microsoft.XMLHTTP");
@@ -130,6 +130,14 @@ function contactUpdate()
         xhr.open('POST', 'contact_update.php', true);
         xhr.send(data);
     }
+    else if (id == 0)
+    {
+        alert('No contact selected!!');
+    }
+    else
+    {
+        alert('All fields must be refilled');
+    }
 }
 
 function contactStore()
@@ -139,7 +147,7 @@ function contactStore()
     var lname = document.getElementById('lname').value;
     var phone = document.getElementById('phone').value;
     var email = document.getElementById('email').value;
-    
+
 
     if(fname !== '' && lname !== '' && phone !== '' && email !== '' && id == 0)
     {
@@ -170,7 +178,7 @@ function contactStore()
                 var text = document.createTextNode('-- Select Contact --');
                 option.appendChild(text);
                 select.appendChild(option);
-                
+
                 // update listing
                 var id = object.id;
                 contactsListing(id.toString());
@@ -180,5 +188,61 @@ function contactStore()
         };
         xhr.open('POST', 'contact_store.php', true);
         xhr.send(data);
+    }
+    else if (id > 0)
+    {
+        alert('Contact exists already!!');
+    }
+    else
+    {
+        alert('All fields must be refilled!!');
+    }
+}
+
+function contactDestroy()
+{
+    var id = document.getElementById('contact').value;
+
+    if(id > 0)
+    {
+        const xhr = ajaxBrowserHacks();
+
+        xhr.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                // receive response from server
+                var object = JSON.parse(this.responseText);
+
+                var select = document.getElementById('contact');
+
+                while (select.firstChild)
+                {
+                    select.removeChild(select.firstChild);
+                }
+
+                // create default option
+                var option = document.createElement('option');
+                option.setAttribute('value', 0);
+                var text = document.createTextNode('-- Select Contact --');
+                option.appendChild(text);
+                select.appendChild(option);
+
+                // update listing
+                contactsListing('0');
+
+                document.getElementById('fname').value = '';
+                document.getElementById('lname').value = '';
+                document.getElementById('phone').value = '';
+                document.getElementById('email').value = '';
+
+                alert(object.message);
+            }
+        };
+        xhr.open("GET", "contact_destroy.php?contact=" + id, true);
+        xhr.send();
+    }
+    else
+    {
+        alert('No contact selected!');
     }
 }
