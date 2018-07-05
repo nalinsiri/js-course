@@ -9,15 +9,15 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$employee_id = $_GET['employee'];
+$contact_id = $_GET['contact'];
 
 if(!empty($employee_id))
 {
     // query select
-    $sql = 'SELECT * FROM employees WHERE id = ' . $employee_id;
+    $sql = 'SELECT * FROM contacts WHERE id = ' . $contact_id;
     $result = $conn->query($sql);
 
-    $employee = [];
+    $contact = [];
 
     // fetch result to arrays
     if ($result->num_rows > 0)
@@ -25,13 +25,13 @@ if(!empty($employee_id))
         // output data of each row
         while($row = $result->fetch_assoc())
         {
-            array_push($employee, $row);
+            array_push($contact, $row);
         }
     }
 
     // output as json
     header("Content-type:application/json");
-    echo json_encode($employee);
+    echo json_encode($contact);
 }
 
 $conn->close();

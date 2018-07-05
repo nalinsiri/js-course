@@ -24,7 +24,6 @@ label{
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#808080', endColorstr='#b2b2b2',GradientType=1 );
 }
 button.form-control{
-    cursor: pointer;
     width: 550px;
     font-size: 18px;
     color: #FFF;
@@ -34,13 +33,6 @@ button.form-control{
     background: -webkit-linear-gradient(-45deg, #48d7ff 0%,#5cd7f9 51%,#5cd7f9 51%,#4ad4fb 51%,#9fe8fd 100%);
     background: linear-gradient(135deg, #48d7ff 0%,#5cd7f9 51%,#5cd7f9 51%,#4ad4fb 51%,#9fe8fd 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#48d7ff', endColorstr='#9fe8fd',GradientType=1 );
-}
-button:hover{
-    background: #7cbc0a;
-    background: -moz-linear-gradient(-45deg, #7cbc0a 0%, #80c217 49%, #a1d54f 50%, #9dd53a 100%);
-    background: -webkit-linear-gradient(-45deg, #7cbc0a 0%,#80c217 49%,#a1d54f 50%,#9dd53a 100%);
-    background: linear-gradient(135deg, #7cbc0a 0%,#80c217 49%,#a1d54f 50%,#9dd53a 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7cbc0a', endColorstr='#9dd53a',GradientType=1 );
 }
 h1{
     color: #48D7FF;
@@ -52,14 +44,31 @@ h1{
     padding: 10px;
     border: 1px solid #BAB9B8;
 }
-.form-control, #employee-info{
+.form-control, #contact-info{
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
 }
-#employee-info{
+#contact-info{
     width: 550px;
     margin: 25px auto;
     padding: 15px;
     background-color: #808080;
+}
+.header{
+    width: 530px;
+    height: 39px;
+}
+.hl, .hr{
+    width: 265px;
+    float: left;
+}
+.hr{
+    text-align: right;
+}
+.clear{
+    float: none;
+}
+.pointer{
+    cursor: pointer;
 }

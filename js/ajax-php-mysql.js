@@ -1,8 +1,18 @@
-function employeesListing()
+function contactsListing()
 {
     var data = [];
 
-    var xmlhttp = new XMLHttpRequest();
+    if (window.XMLHttpRequest) 
+    {
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    } 
+    else 
+    {
+        // code for IE6, IE5
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200)
         {
@@ -11,7 +21,7 @@ function employeesListing()
 
             if(object.length > 0)
             {
-                var select = document.getElementById('employee');
+                var select = document.getElementById('contact');
                 for (var index in object)
                 {
                     var option = document.createElement('option');
@@ -24,16 +34,26 @@ function employeesListing()
             }
         }
     };
-    xmlhttp.open("GET", "employees_listing.php", true);
+    xmlhttp.open("GET", "contacts_listing.php", true);
     xmlhttp.send();
 }
 
-function employeeShow(employee_id)
+function contactShow(contact_id)
 {
     var data = [];
-    if (employee_id !== '')
+    if (contact_id !== '')
     {
-        var xmlhttp = new XMLHttpRequest();
+        if (window.XMLHttpRequest) 
+        {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } 
+        else 
+        {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
         xmlhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200)
             {
@@ -49,33 +69,43 @@ function employeeShow(employee_id)
                 }
             }
         };
-        xmlhttp.open("GET", "employee_show.php?employee=" + employee_id, true);
+        xmlhttp.open("GET", "contact_show.php?contact=" + contact_id, true);
         xmlhttp.send();
     }
 }
 
-function employeeUpdate()
+function contactUpdate()
 {
-    var id = document.getElementById('employee').value;
+    var id = document.getElementById('contact').value;
     var fname = document.getElementById('fname').value;
     var lname = document.getElementById('lname').value;
     var phone = document.getElementById('phone').value;
     var email = document.getElementById('email').value;
 
-    if(fname !== '' && lname !== '' && phone !== '' && email !== '')
+    if(fname !== '' && lname !== '' && phone !== '' && email !== '' && id !== '')
     {
         const data =  new FormData();
-        data.append("id", document.getElementById('employee').value);
-        data.append("fname", document.getElementById('fname').value);
-        data.append("lname", document.getElementById('lname').value);
-        data.append("phone", document.getElementById('phone').value);
-        data.append("email", document.getElementById('email').value);
+        data.append("id", id);
+        data.append("fname", fname);
+        data.append("lname", lname);
+        data.append("phone", phone);
+        data.append("email", email);
 
-        const xhr = new XMLHttpRequest();
+        if (window.XMLHttpRequest) 
+        {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            const xhr = new XMLHttpRequest();
+        } 
+        else 
+        {
+            // code for IE6, IE5
+            const xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
         xhr.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200)
             {
-                var select = document.getElementById('employee');
+                var select = document.getElementById('contact');
 
                 while (select.firstChild)
                 {
@@ -83,14 +113,14 @@ function employeeUpdate()
                 }
 
                 var option = document.createElement('option');
-                var text = document.createTextNode('-- Select Employee --');
+                var text = document.createTextNode('-- Select Contact --');
                 option.appendChild(text);
                 select.appendChild(option);
 
-                employeesListing();
+                contactsListing();
             }
         };
-        xhr.open('POST', 'employee_update.php', true);
+        xhr.open('POST', 'contact_update.php', true);
         xhr.send(data);
     }
 }

@@ -7,13 +7,21 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="css/ajax-php-mysql.css">
     </head>
-    <body onload="employeesListing()">
-        <div id="employee-info">
-            <h1>Employee information <span>+</span></h1>
+    <body onload="contactsListing()">
+        <div id="contact-info">
+            <div class="header">
+                <div class="hl">
+                    <h1>Contacts++</h1>
+                </div> 
+                <div class="hr">
+                    <h1><i class="fas fa-user-plus pointer" onclick=""></i></h1>
+                </div>
+                <br class="clear">
+            </div>
             <form action="#" method="post">
-                <label class="form-control" for="employee">Select employee</label>
-                <select class="form-control" id="employee" name="employee" onchange="employeeShow(this.value)">
-                    <option value="">-- Select Employee --</option>
+                <label class="form-control" for="contact">Select contact</label>
+                <select class="form-control" id="contact" name="contact" onchange="contactShow(this.value)">
+                    <option value="">-- Select Contact --</option>
                 </select>
                 <label class="form-control" for="fname">First name</label>
                 <input type="text" class="form-control" name="fname" id="fname">
@@ -23,7 +31,7 @@
                 <input type="text" class="form-control" name="phone" id="phone">
                 <label class="form-control" for="email">Email</label>
                 <input type="text" class="form-control" name="email" id="email">
-                <button class="form-control" type="button" name="submit" onclick="employeeUpdate()">Update</button>
+                <button class="form-control pointer" type="button" name="submit" onclick="contactUpdate()">Update</button>
             </form>
         </div>
         <script src="js/ajax-php-mysql.js" charset="utf-8"></script>

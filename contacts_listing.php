@@ -10,10 +10,10 @@ if ($conn->connect_error) {
 }
 
 // query select
-$sql = 'SELECT id, fname, lname FROM employees ORDER BY id DESC';
+$sql = 'SELECT id, fname, lname FROM contacts ORDER BY id DESC';
 $results = $conn->query($sql);
 
-$employees = [];
+$contacts = [];
 
 // fetch result to arrays
 if ($results->num_rows > 0)
@@ -21,13 +21,13 @@ if ($results->num_rows > 0)
     // output data of each row
     while($row = $results->fetch_assoc())
     {
-        array_push($employees, $row);
+        array_push($contacts, $row);
     }
 }
 
 // output as json
 header("Content-type:application/json");
-echo json_encode($employees);
+echo json_encode($contacts);
 
 $conn->close();
 ?>
