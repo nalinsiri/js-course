@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Watch with datetime</title>
+    </head>
+    <body onload="showTime()">
+        <div id="watch">
+            <!-- place to show time -->
+        </div>
+        <script type="text/javascript">
+            function correctTime(time)
+            {
+                if(time < 10)
+                {
+                    time = '0' + time;
+                }
+
+                return time;
+            }
+
+            function showTime()
+            {
+                var now = new Date();
+                var h = now.getHours();
+                var m = now.getMinutes();
+                var s = now.getSeconds();
+
+                // correct the time format
+                h = correctTime(h);
+                m = correctTime(m);
+                s = correctTime(s);
+
+                document.getElementById('watch').innerHTML = h + ':' + m + ':' + s;
+
+                setTimeout(showTime, 500);
+            }
+        </script>
+    </body>
+</html>
