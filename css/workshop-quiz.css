@@ -26,6 +26,12 @@ div.question{
     padding: 20px;
     background-color: #34495E;
 }
+div.question h2{
+    color: #17A589;
+}
+h1, h2, h3, table{
+    color: #0E6655
+}
 p{
     padding: 5px;
 }
