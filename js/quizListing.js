@@ -50,12 +50,5 @@ var quiz = {
             ],
             'correct' : 'style'
         },
-    ],
-    'correctAnswers': [
-        '<script>',
-        'Both the <head> section and the <body> section are correct',
-        'Hyper Text Markup Language',
-        'Cascading Style Sheets',
-        'style',
     ]
 };
