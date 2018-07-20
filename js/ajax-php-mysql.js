@@ -205,44 +205,47 @@ function contactDestroy()
 
     if(id > 0)
     {
-        const xhr = ajaxBrowserHacks();
+        if(confirm('Are you sure?'))
+        {
+            const xhr = ajaxBrowserHacks();
 
-        xhr.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200)
-            {
-                // receive response from server
-                var object = JSON.parse(this.responseText);
-
-                var select = document.getElementById('contact');
-
-                while (select.firstChild)
+            xhr.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200)
                 {
-                    select.removeChild(select.firstChild);
+                    // receive response from server
+                    var object = JSON.parse(this.responseText);
+
+                    var select = document.getElementById('contact');
+
+                    while (select.firstChild)
+                    {
+                        select.removeChild(select.firstChild);
+                    }
+
+                    // create default option
+                    var option = document.createElement('option');
+                    option.setAttribute('value', 0);
+                    var text = document.createTextNode('-- Select Contact --');
+                    option.appendChild(text);
+                    select.appendChild(option);
+
+                    // update listing
+                    contactsListing('0');
+
+                    document.getElementById('fname').value = '';
+                    document.getElementById('lname').value = '';
+                    document.getElementById('phone').value = '';
+                    document.getElementById('email').value = '';
+
+                    alert(object.message);
                 }
-
-                // create default option
-                var option = document.createElement('option');
-                option.setAttribute('value', 0);
-                var text = document.createTextNode('-- Select Contact --');
-                option.appendChild(text);
-                select.appendChild(option);
-
-                // update listing
-                contactsListing('0');
-
-                document.getElementById('fname').value = '';
-                document.getElementById('lname').value = '';
-                document.getElementById('phone').value = '';
-                document.getElementById('email').value = '';
-
-                alert(object.message);
-            }
-        };
-        xhr.open("GET", "contact_destroy.php?contact=" + id, true);
-        xhr.send();
+            };
+            xhr.open("GET", "contact_destroy.php?contact=" + id, true);
+            xhr.send();
+        }
     }
     else
     {
         alert('No contact selected!');
-    }
+    } 
 }
