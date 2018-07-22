@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>DOM Document</title>
+        <link href="https://fonts.googleapis.com/css?family=Oswald|Gaegu|Merienda" rel="stylesheet">
+        <link rel="stylesheet" href="css/dom.css">
+        <script src="js/dom.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <section class="header">
+                <div class="title">
+                    <h1>DOM (Document Object Model)</h1>
+                </div>
+            </section>
+            <section class="content">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="top-align col1">
+                                <div class="form-control">
+                                    <label for="programming">Select language : </label>
+                                    <br>
+                                    <select name="programming" id="programming" onchange="showLanguageIcon(this.value)">
+                                        <option value="">---</option>
+                                        <option value="html">HTML</option>
+                                        <option value="css">CSS</option>
+                                        <option value="javascript">JavaScript</option>
+                                        <option value="php">PHP</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class="col2">
+                                <h3>Image Preview :</h3>
+                                <div class="preview">
+                                    <img src="images/js1.png" alt="placeholder">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">
+                                <div class="form-control">
+                                    <label for="desc">Write some description :</label>
+                                    <br>
+                                    <textarea name="desc" id="desc" rows="10" onkeyup="updateDescriptionText(this.value)"></textarea>
+                                </div>
+                            </td>
+                            <td class="top-align col2">
+                                <h3 id="desc-text">Your description...</h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="col1">
+                                <div class="form-control">
+                                    <label for="font">Select font : </label>
+                                    <select name="font" id="font" onchange="setFont(this.value)">
+                                        <option value="">---</option>
+                                        <option value="'Gaegu', cursive">Gaegu</option>
+                                        <option value="'Merienda', cursive">Merienda</option>
+                                    </select>
+                                </div>
+                                <div class="form-control">
+                                    <label for="font-color">Select font color :</label>
+                                    <select name="font_color" id="font-color" onchange="setFontColor(this.value)">
+                                        <option value="">---</option>
+                                        <option value="#566573">Gray</option>
+                                        <option value="#16A085">Green</option>
+                                        <option value="#1F618D">Blue</option>
+                                        <option value="#76448A">Purple</option>
+                                    </select>
+                                </div>
+                                <div class="form-control">
+                                    <label for="">Select font size :</label>
+                                    <select name="font_size" id="font-size" onchange="setFontSize(this.value)">
+                                        <option value="">---</option>
+                                        <option value="26px">Big</option>
+                                        <option value="18px">Medium</option>
+                                        <option value="12px">Small</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td class="col2">
+                                <h2 id="css-text">Edit you font style</h2>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+    
+            </section>
+        </div>
+
+        <script type="text/javascript">
+            // document.getElementsByTagName('img')[0].setAttribute('src', 'images/js2.png');
+            // document.images[0].src = 'images/js1.png';
+
+            // var img = document.createElement("img");
+            // img.setAttribute('src', 'images/js2.png');
+            // document.getElementsByClassName('content')[0].appendChild(img);
+        </script>
+    </body>
+</html>
