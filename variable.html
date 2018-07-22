@@ -5,28 +5,26 @@
         <title>Variable</title>
     </head>
     <body>
-        <h1>Variable</h1>
-        <p class="content"></p>
-        <p class="content"></p>
+        <div class="container">
+            <section class="header">
+                <h1>Variable</h1>
+            </section>
+            <section class="content">
+                <label for="">Write anything you want :</label>
+                <br>
+                <input type="text" name="variable_value" id="variable-value" onkeyup="setValue(this.value)">
+                <br>
+                <p>Variable "text" has this value : <span id="value"></span></p>
+            </section>
+        </div>
+        
 
         <script type="text/javascript">
-            var sayHello = 'Hello World';
+            function setValue(value){
+                var text = value;
 
-            sayHi = 'Hi';
-
-            gggg = 21;
-
-            var ggg;
-
-            ggg = gggg;
-
-            document.getElementsByClassName('content')[0].innerHTML = "fdsfsdf";
-
-            document.write(sayHello);
-
-            alert(ggg);
-
-            console.log(sayHello);
+                document.getElementById('value').innerHTML = text;
+            }
         </script>
     </body>
 </html>
